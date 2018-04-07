@@ -72,7 +72,7 @@ string solve(int D, string P) {
   return to_string(res);
 }
 
-// 10:40-11:20
+// 10:40-11:20 submit
 int main() {
   int T;
   cin >> T;
