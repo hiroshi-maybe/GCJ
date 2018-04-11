@@ -49,6 +49,28 @@ typedef tuple< int, int, int > III;
 #define dump4(x,y,z,a) if(TRACE) { cout << #x << " = " << (x) << ", " << #y << " = " << (y) << ", " << #z << " = " << (z) << ", " << #a << " = " << (a) << endl; }
 #define dumpAR(ar) if(TRACE) { FORR(x,(ar)) { cout << x << ','; } cout << endl; }
 
+/*
+ 
+ 4/7/2018 GCJ Qualification Round
+ 
+ 10:40-11:20 Sm, Lg ACC
+ 
+ I showed that processing right most SC is optimal.
+ 
+ Editorials:
+  - https://codejam.withgoogle.com/2018/challenges/00000000000000cb/analysis/0000000000007966
+  - http://kmjp.hatenablog.jp/entry/2018/04/08/0900
+  - https://twitter.com/tanakh/status/982903852746682369
+  - https://twitter.com/kuuso1/status/982815766104817665
+  - https://twitter.com/rickytheta/status/982816374102736896
+  - https://togetter.com/li/1215911
+ 
+ Summary:
+  - Simple greedy problem
+  - It took most of time to set up standard IO
+ 
+ */
+
 int f(string &P) {
   int res=0,x=1;
   REP(i,SZ(P)) {
