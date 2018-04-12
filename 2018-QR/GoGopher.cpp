@@ -50,6 +50,34 @@ typedef tuple< int, int, int > III;
 #define dump4(x,y,z,a) if(TRACE) { cerr << #x << " = " << (x) << ", " << #y << " = " << (y) << ", " << #z << " = " << (z) << ", " << #a << " = " << (a) << endl; }
 #define dumpAR(ar) if(TRACE) { FORR(x,(ar)) { cerr << x << ','; } cerr << endl; }
 
+/*
+ 
+ 4/7/2018 GCJ Qualification Round
+ 
+ 13:30-15:00 Sm, Lg ACC
+ 
+ It was straightforward to figure out that given algorithm is doing bubble sort separately based on parity of indices.
+ 
+ Editorials:
+  - https://codejam.withgoogle.com/2018/challenges/00000000000000cb/analysis/0000000000007a30
+  - http://kmjp.hatenablog.jp/entry/2018/04/08/0900
+  - https://twitter.com/tanakh/status/982903855242362880
+   - expectation to paint all 9 cells is `9*ln(9)`?
+  - https://twitter.com/kuuso1/status/982815766104817665
+  - https://twitter.com/kuuso1/status/982816190778114053
+   - 489.557 is expectation?
+  - https://twitter.com/rickytheta/status/982816374102736896
+  - https://togetter.com/li/1215911
+ 
+ Key:
+  - Paint 3xN rectangle in one direction
+ 
+ Summary:
+  - It took most of time to figure out how to communicate with test tool by flushing buffer
+  - I couldn't prove that my solution meets expectation
+ 
+ */
+
 struct Solve {
 public:
   Solve(int A) {
