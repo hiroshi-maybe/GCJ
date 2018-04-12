@@ -50,6 +50,28 @@ typedef tuple< int, int, int > III;
 #define dump4(x,y,z,a) if(TRACE) { cout << #x << " = " << (x) << ", " << #y << " = " << (y) << ", " << #z << " = " << (z) << ", " << #a << " = " << (a) << endl; }
 #define dumpAR(ar) if(TRACE) { FORR(x,(ar)) { cout << x << ','; } cout << endl; }
 
+/*
+ 
+ 4/7/2018 GCJ Qualification Round
+ 
+ 11:50-12:49 Sm, Lg ACC
+ 
+ It was straightforward to figure out that given algorithm is doing bubble sort separately based on parity of indices.
+ 
+ Editorials:
+  - https://codejam.withgoogle.com/2018/challenges/00000000000000cb/analysis/00000000000079cb
+  - http://kmjp.hatenablog.jp/entry/2018/04/08/0900
+  - https://twitter.com/tanakh/status/982903854025994240
+  - https://twitter.com/kuuso1/status/982815766104817665
+  - https://twitter.com/rickytheta/status/982816374102736896
+  - https://togetter.com/li/1215911
+ 
+ Summary:
+ - Analysis was straightforward
+ - It took most of time to do additional test with random test cases
+ 
+ */
+
 int solve(vector<int> &A) {
   dumpAR(A);
   if(SZ(A)%2==1) A.push_back(1e9+5);
