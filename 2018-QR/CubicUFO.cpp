@@ -50,6 +50,61 @@ typedef tuple< int, int, int > III;
 #define dump4(x,y,z,a) if(TRACE) { cout << #x << " = " << (x) << ", " << #y << " = " << (y) << ", " << #z << " = " << (z) << ", " << #a << " = " << (a) << endl; }
 #define dumpAR(ar) if(TRACE) { FORR(x,(ar)) { cout << x << ','; } cout << endl; }
 
+/*
+ 
+ 4/7/2018 GCJ Qualification Round
+ 
+ 13:30-15:00 Sm ACC, Lg WA
+ 
+ I figured out below area formula:
+ 
+ area(𝛩) = sin𝛩 + √2*cos𝛩
+ 
+ https://www.google.com/search?client=safari&rls=en&ei=m2rJWqz5F4K2sAWE0r_ICg&q=sqrt%282%29*cos%28x%29%2Bsin%28x%29&oq=sqrt%282%29*cos%28x%29%2Bsin%28x%29&gs_l=psy-ab.3..35i39k1j0i8i30k1l3.18718.22771.0.22991.9.8.1.0.0.0.117.686.4j3.7.0....0...1.1.64.psy-ab..1.5.436....0.BsiOo_VgHec
+ 
+ However I couldn't figure out that area is maximal when 𝛩 = atan(1/√2)
+ 
+ Editorials:
+  - https://codejam.withgoogle.com/2018/challenges/00000000000000cb/analysis/00000000000079cc
+  - http://kmjp.hatenablog.jp/entry/2018/04/08/0900
+  - https://twitter.com/tanakh/status/982903856433586176
+  - https://twitter.com/kuuso1/status/982815766104817665
+  - https://twitter.com/rickytheta/status/982816374102736896
+  - https://togetter.com/li/1215911
+ 
+ From Trigonometric Addition Formulas, addition of sin and cos is shown as below:
+ 
+ sin(𝛂+𝛃) = sin𝛂*cos𝛃 + cos𝛂*sin𝛃
+ 
+ Thus formula of sin and cos is shown by single sin.
+ 
+ From the theorem...
+ 
+   area(𝛩)
+ = sin𝛩 + √2*cos𝛩
+ = √3*(sin𝛩*1/√3 + cos𝛩*√2/√3)
+ = √3*sin(𝛩+𝛂) where 𝛂=atan √2
+ 
+ Now we figured out that maximal of area(𝛩) is √3 when 𝛩 = 𝜋/2-𝛂
+ Let's define 𝛂' = 𝜋/2-𝛂.
+ 𝛂 forms right triangle with which tan𝛂=√2
+ Now right triangle with 𝛂' is obvious. tan𝛂'=1/√2 => 𝛂'=atan(1/√2)
+ 
+ Trigonometric Addition Formulas
+  - http://mathworld.wolfram.com/TrigonometricAdditionFormulas.html
+  - http://www.geisya.or.jp/~mwm48961/kou3/trigonometric24.htm
+ 
+ Key:
+  - [1,√2] is possible by rotation of single axis. √2 is achievable by 𝛩 = 𝜋/4
+  - [√2,√3] is possible by rotating the other axis. √3 is obtained for 𝛩 = atan(1/√2) by trigonometric addition formulas
+ 
+ Summary:
+  - I didn't have rotation matrix handy. I needed to search, understand and apply it
+  - I completely forgot trigonometric addition formulas. Thus I couldn't figure out radian which gives maximal area. Eventually I got WA in Large test case.
+  - `atan2(x,y)` is neat 👍
+ 
+ */
+
 const double PI = 3.14159265358979323846;
 const double PI_4 = PI/4.0;
 const double EPS=1e-8;
