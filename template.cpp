@@ -54,8 +54,8 @@ typedef tuple< int, int, int > III;
 
 // iostream
 // $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG xxxxx.cpp && ./a.out < xxxxx.in
-string solve(int D, string P) {
-  return "IMPOSSIBLE";
+int solve(int D, string P) {
+  return 0;
 }
 int main() {
   int T;
@@ -63,7 +63,8 @@ int main() {
   for(int t = 1; t <= T; ++t) {
     int D; string P;
     cin >> D >> P;
-    cerr << "Case #" << t << ": " << solve(D,P) << endl;
+    int res = solve(D,P);
+    cout << "Case #" << t << ": " << res << endl;
   }
   return 0;
 }
