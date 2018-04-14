@@ -53,7 +53,7 @@ typedef tuple< int, int, int > III;
 // https://qiita.com/blackcurrant/items/312ea2471900132fbd6a
 
 // iostream
-// $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG xxxxx.cpp && ./a.out < xxxxx.in
+// $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && ./a.out < x.in | diff x.out -
 int solve(int D, string P) {
   return 0;
 }
@@ -70,7 +70,7 @@ int main() {
 }
 
 // variable length array (stdio)
-// $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG xxxxx.cpp && ./a.out < xxxxx.in
+// $ $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && ./a.out < x.in | diff x.out -
 int solve_(vector<int> &A) {
   return -1;
 }
@@ -88,7 +88,7 @@ int main_vector() {
 }
 
 // interactive (stdio)
-// $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG xxxxx.cpp && python testing_tool.py ./a.out
+// $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && python testing_tool.py ./a.out
 struct Solve {
 public:
   Solve(int A): A(A) {
