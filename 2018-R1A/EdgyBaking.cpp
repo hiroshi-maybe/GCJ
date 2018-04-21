@@ -42,7 +42,7 @@ typedef tuple< int, int, int > III;
 #define SMAX(a,b) a = max(a,b)
 #define SMIN(a,b) a = min(a,b)
 // debug cerr
-#define TRACE false
+#define TRACE true
 #define dump(x) if(TRACE) { cerr << #x << " = " << (x) << endl; }
 #define dump2(x,y) if(TRACE) { cerr << #x << " = " << (x) << ", " << #y << " = " << (y) << endl; }
 #define dump3(x,y,z) if(TRACE) { cerr << #x << " = " << (x) << ", " << #y << " = " << (y) << ", " << #z << " = " << (z) << endl; }
@@ -90,9 +90,6 @@ typedef tuple< int, int, int > III;
    - https://twitter.com/satanic0258/status/984998929967104000
     - https://twitter.com/skyaozora/status/985004365231501312
  
- After reading some editorials, looks like regular interval merge works too?
- I cannot verify it because practice room is not open.
- 
  21:00-21:30 add my analysis and solution
  
  # Solution 1. dp
@@ -132,6 +129,10 @@ typedef tuple< int, int, int > III;
  
  Thus the number of interval is upper-bounded by 54. We don't need to be worried about 2^N intervals.
  
+ 4/21/2018
+ 
+ I confirmed both solutin #1 and #2 passes large set.
+ 
  Key:
   - dp or merge intervals
   - dp solution is smart and impressive
@@ -142,12 +143,17 @@ typedef tuple< int, int, int > III;
    - if possible value is small, it may not give exponential set
   - I couldn't reduce to knapsack problem from set of intervals
    - Maximizing "slack" is always optimal by sacrificing lower bound. This is the key to come up with it.
+  - Implementation bugs in dp solution
+   - wrong enumeration to lookup dp table
+   - wrong upper-bound of lower range (`*100` was missing)
+   - `*2` was missing in lower bound computation
  
  */
 
 // iostream
 // $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG EdgyBaking.cpp && ./a.out < EdgyBaking.in | diff EdgyBaking.out -
 
+// System test passed
 double solve_mergeintervals(int N, int P, vector<II> &A) {
   double sum=0;
   FORR(a,A) sum+=2*(a.first+a.second);
@@ -178,20 +184,22 @@ double solve_mergeintervals(int N, int P, vector<II> &A) {
   return res;
 }
 
-double dp[501];
+double dp[50001];
 double solve(int N, int P, vector<II> &A) {
-  double sum=0;
+  int sum=0;
   FORR(a,A) sum+=2*(a.first+a.second);
   
   ZERO(dp);
-  REP(i,N) for(int x=500; x>=min(A[i].first,A[i].second); --x) {
+  REP(i,N) for(int x=50000; x>=0; --x) {
     int a=A[i].first,b=A[i].second;
-    int y=min(a,b);
-    SMAX(dp[x], dp[x-y]+2*hypot(a,b));
+    int y=2*min(a,b);
+    if(x>=y) SMAX(dp[x], dp[x-y]+2*hypot(a,b));
   }
   
-  double res=0;
-  REPE(x,P-sum) SMAX(res,min(P-sum,dp[x]));
+  double res=0, ub=P-1.0*sum;
+  REPE(x,50000) {
+    if(dp[x]>=0&&x<=ub) SMAX(res,min(ub,dp[x]));
+  }
   return sum+res;
 }
 
