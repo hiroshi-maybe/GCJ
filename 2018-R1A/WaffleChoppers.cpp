@@ -49,6 +49,32 @@ typedef tuple< int, int, int > III;
 #define dump4(x,y,z,a) if(TRACE) { cerr << #x << " = " << (x) << ", " << #y << " = " << (y) << ", " << #z << " = " << (z) << ", " << #a << " = " << (a) << endl; }
 #define dumpAR(ar) if(TRACE) { FORR(x,(ar)) { cerr << x << ','; } cerr << endl; }
 
+/*
+ 
+ 4/19/2018 GCJ 2018 R1A
+ 
+ 18:00-20:04 Small: AC, Large: AC
+ 
+ Editorials:
+  - articles
+   - https://codejam.withgoogle.com/2018/challenges/0000000000007883/analysis/000000000003005a
+   - http://div9851.hatenadiary.com/entry/2018/04/14/132959
+   - https://pitsbuffersolution.com/blog/articles/gcj2018_round1a.php
+   - https://amalog.hateblo.jp/entry/gcj-2018-round1a
+  - twitter comments
+   - https://twitter.com/tanakh/status/985000551405445122
+   - https://twitter.com/kusano_k/status/985000583160459264
+   - https://twitter.com/nico_shindannin/status/985010096148103168
+   - https://twitter.com/rickytheta/status/984998732214091776
+   - https://twitter.com/beet_aizu/status/984997569456521217
+   - https://twitter.com/pazzle1230/status/984997329961811968
+   - https://twitter.com/koyumeishi_/status/984999854077231104
+ 
+ Summary:
+  - Wasted more than 1 hour due to template bug during the contest 👎👎👎👎👎👎👎👎👎👎👎👎👎👎👎👎👎👎👎👎👎👎👎👎👎👎
+ 
+ */
+
 struct TwoDimCumSum {
 public:
   int R,C;
