@@ -49,9 +49,6 @@ typedef tuple< int, int, int > III;
 #define dump4(x,y,z,a) if(TRACE) { cerr << #x << " = " << (x) << ", " << #y << " = " << (y) << ", " << #z << " = " << (z) << ", " << #a << " = " << (a) << endl; }
 #define dumpAR(ar) if(TRACE) { FORR(x,(ar)) { cerr << x << ','; } cerr << endl; }
 
-// standard io in competitive programming
-// https://qiita.com/blackcurrant/items/312ea2471900132fbd6a
-
 // iostream
 // $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && ./a.out < x.in | diff x.out -
 int solve(int D, string P) {
@@ -63,14 +60,16 @@ int main() {
   for(int t = 1; t <= T; ++t) {
     int D; string P;
     cin >> D >> P;
-    int res = solve(D,P);
-    cout << "Case #" << t << ": " << res << endl;
+    
+    cout << "Case #" << t << ": ";
+    cout << solve(D,P);
+    cout << endl;
   }
   return 0;
 }
 
 // variable length array (stdio)
-// $ $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && ./a.out < x.in | diff x.out -
+// $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && ./a.out < x.in | diff x.out -
 int solve_(vector<int> &A) {
   return -1;
 }
@@ -119,3 +118,6 @@ int main_inteactive() {
   }
   return 0;
 }
+
+// standard io in competitive programming
+// https://qiita.com/blackcurrant/items/312ea2471900132fbd6a
