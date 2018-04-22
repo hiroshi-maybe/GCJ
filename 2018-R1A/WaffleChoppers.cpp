@@ -58,6 +58,7 @@ typedef tuple< int, int, int > III;
  Editorials:
   - articles
    - https://codejam.withgoogle.com/2018/challenges/0000000000007883/analysis/000000000003005a
+   - http://kmjp.hatenablog.jp/entry/2018/04/22/0900
    - http://div9851.hatenadiary.com/entry/2018/04/14/132959
    - https://pitsbuffersolution.com/blog/articles/gcj2018_round1a.php
    - https://amalog.hateblo.jp/entry/gcj-2018-round1a
