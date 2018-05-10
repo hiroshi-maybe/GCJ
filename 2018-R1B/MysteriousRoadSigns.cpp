@@ -82,9 +82,13 @@ vector<int> genRandSeq(int size, int lb, int ub) {
   - https://codejam.withgoogle.com/2018/challenges/0000000000007764/analysis/000000000003675b
   - http://naoyat.hatenablog.jp/entry/GCJ2018R1B
  
+ Tweets:
+  - https://togetter.com/li/1222764
+ 
  Summary:
-  - I completely forgout MMMNNMMM case 👎👎👎👎👎👎👎
+  - I completely forgot MMMNNMMM case 👎👎👎👎👎👎👎
    - MMMNNN is not sufficient
+  - swap technique to avoid copy&paste is cool
  
  */
 
