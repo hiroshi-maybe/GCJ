@@ -1,20 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-// type alias
 typedef long long LL;
 typedef vector < int > VI;
 typedef unordered_map < int, int > MAPII;
 typedef unordered_set < int > SETI;
 typedef pair< int , int > II;
 typedef tuple< int, int, int > III;
-// repetition
+template<class T> using VV=vector<vector<T>>;
 #define FORE(i,a,b) for(int i=(a);i<=(b);++i)
 #define REPE(i,n)  for(int i=0;i<=(n);++i)
 #define FOR(i,a,b) for(int i=(a);i<(b);++i)
 #define REP(i,n)  for(int i=0;i<(n);++i)
 #define FORR(x,arr) for(auto& x:arr)
 #define SZ(a) int((a).size())
-// DP
+template<class T> inline T SMIN(T& a, const T b) { return a=(a>b)?b:a; }
+template<class T> inline T SMAX(T& a, const T b) { return a=(a<b)?b:a; }
+#define ALL(c) (c).begin(),(c).end()
 #define MINUS(dp) memset(dp, -1, sizeof(dp))
 #define ZERO(dp) memset(dp, 0, sizeof(dp))
 // minmax
@@ -38,51 +39,39 @@ template<typename S, typename T> std::ostream& operator<<(std::ostream& _os, con
 
 // iostream
 // $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && ./a.out < x.in | diff x.out -
-int solve(int D, string P) {
-  return 0;
+const int MAX_N=1e6+1;
+LL A[MAX_N];
+int N;
+void solve() {
 }
-int main() {
-  int T;
-  cin >> T;
-  for(int t = 1; t <= T; ++t) {
-    int D; string P;
-    cin >> D >> P;
+int main(int argc, char* argv[]) {
+  int T; cin>>T;
+  for(int t=1; t<= T; ++t) {
+    int N; cin>>N;
+    REP(i,N) cin>>A[i];
     
-    cout << "Case #" << t << ": ";
-    cout << solve(D,P);
-    cout << endl;
+    cout<<"Case #"<<t<<": ";
+    solve();
   }
   return 0;
 }
 
-// variable length array (stdio)
-// $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && ./a.out < x.in | diff x.out -
-int solve_(vector<int> &A) {
-  return -1;
-}
-int main_vector() {
-  int T; scanf("%d", &T);
-  for(int t = 1; t <= T; ++t) {
-    int N; scanf("%d", &N);
-    vector<int> A(N);
-    REP(i,N) scanf("%d", &A[i]);
-    int res=solve_(A);
-    if (res==-1) printf("Case #%d: OK\n", t);
-    else printf("Case #%d: %d\n", t, res);
-  }
-  return 0;
-}
-
-// interactive (stdio)
+// interactive
 // $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && python testing_tool.py ./a.out
+// $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && python interactive_runner.py python testing_tool.py 0 -- ./a.out
 struct Solve {
 public:
   Solve(int A): A(A) {
   }
-  II next() {
-    return {-1,-1};
+  int ask(int x) {
+    cout<<x<<endl;
+    int res; cin>>res;
+    if(res==-1) exit(0);
+    return res;
   }
-  void fill(int r, int c) {
+  void ans(int x) {
+    cout<<x<<endl;
+    int res; cin>>res;
   }
 private:
   int A;
@@ -92,19 +81,8 @@ int main_inteactive() {
   for(int t = 1; t <= T; ++t) {
     int A; scanf("%d", &A);
     Solve s(A);
-    while(true) {
-      II p=s.next();
-      fprintf(stdout, "%d %d\n", p.first,p.second);
-      fflush(stdout);
-      int r,c;
-      scanf("%d %d", &r, &c);
-      assert(r!=-1&&c!=-1);
-      if(r==0&&c==0) break;
-      s.fill(r,c);
-    }
+    while(true) s.ask(0);
+    s.ans(0);
   }
   return 0;
 }
-
-// standard io in competitive programming
-// https://qiita.com/blackcurrant/items/312ea2471900132fbd6a
