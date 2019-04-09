@@ -42,7 +42,6 @@ template<typename S, typename T> std::ostream& operator<<(std::ostream& _os, con
 #define dumpC(beg,end)
 #endif
 
-// $ cp-batch YouCanGoYourOwnWay | diff YouCanGoYourOwnWay.out -
 // $ g++ -std=c++14 -Wall -O2 -D_GLIBCXX_DEBUG -fsanitize=address YouCanGoYourOwnWay.cpp && ./a.out < YouCanGoYourOwnWay.in | diff YouCanGoYourOwnWay.out -
 
 /*
@@ -51,8 +50,20 @@ template<typename S, typename T> std::ostream& operator<<(std::ostream& _os, con
  
  4:06-4:31, 7:08-7:40 submit
  
+ https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/00000000000881da
+ http://drken1215.hatenablog.com/entry/2019/04/07/110100
+ http://kmjp.hatenablog.jp/entry/2019/04/07/0900
+ 
+ Hmmm I didn't come up with inverting path because of square grid condition...
+ 
  */
 string solve(int N, string P) {
+  string res(2*N-2,'?');
+  REP(i,2*N-2) res[i]=P[i]=='E'?'S':'E';
+  return res;
+}
+
+string solve_org(int N, string P) {
   int M=2*N-2;
   int r=0,c=0;
   if(P[0]!=P[M-1]) {
