@@ -1,21 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-// type alias
 typedef long long LL;
 typedef vector < int > VI;
 typedef unordered_map < int, int > MAPII;
 typedef unordered_set < int > SETI;
 typedef pair< int , int > II;
 typedef tuple< int, int, int > III;
-// repetition
+template<class T> using VV=vector<vector<T>>;
 #define FORE(i,a,b) for(int i=(a);i<=(b);++i)
 #define REPE(i,n)  for(int i=0;i<=(n);++i)
 #define FOR(i,a,b) for(int i=(a);i<(b);++i)
 #define REP(i,n)  for(int i=0;i<(n);++i)
 #define FORR(x,arr) for(auto& x:arr)
 #define SZ(a) int((a).size())
+template<class T> inline T SMIN(T& a, const T b) { return a=(a>b)?b:a; }
+template<class T> inline T SMAX(T& a, const T b) { return a=(a<b)?b:a; }
 #define ALL(c) (c).begin(),(c).end()
-// DP
 #define MINUS(dp) memset(dp, -1, sizeof(dp))
 #define ZERO(dp) memset(dp, 0, sizeof(dp))
 // minmax
@@ -42,6 +42,10 @@ template<typename S, typename T> std::ostream& operator<<(std::ostream& _os, con
  4/6/2019
  
  3:40-4:00 got AC on test set 1&2
+ 
+ https://codingcompetitions.withgoogle.com/codejam/round/0000000000051705/0000000000088231
+ http://kmjp.hatenablog.jp/entry/2019/04/07/0900
+ http://drken1215.hatenablog.com/entry/2019/04/07/110100_1
  
  */
 
@@ -78,19 +82,15 @@ void solve(string S) {
   reverse(ALL(A)),reverse(ALL(B));
 //  dump(A,B);
   check(A,B,S);
-  cout<<A<<" "<<B;
+  cout<<A<<" "<<B<<endl;
 }
 
-int main() {
-  int T;
-  cin >> T;
-  for(int t = 1; t <= T; ++t) {
-    string S;
-    cin>>S;
-    
-    cout << "Case #" << t << ": ";
+int main(int argc, char* argv[]) {
+  int T; cin>>T;
+  for(int t=1; t<= T; ++t) {
+    string S; cin>>S;
+    cout<<"Case #"<<t<<": ";
     solve(S);
-    cout << endl;
   }
   return 0;
 }
