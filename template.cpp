@@ -46,7 +46,7 @@ void solve() {
 }
 int main(int argc, char* argv[]) {
   int T; cin>>T;
-  for(int t=1; t<= T; ++t) {
+  for(int t=1; t<=T; ++t) {
     int N; cin>>N;
     REP(i,N) cin>>A[i];
     
