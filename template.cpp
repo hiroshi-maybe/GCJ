@@ -71,14 +71,16 @@ public:
   }
   void ans(int x) {
     cout<<x<<endl;
-    int res; cin>>res;
+    int verd; cin>>verd;
+    assert(verd!=-1);
+    exit(0);
   }
 private:
   int A;
 };
 int main_inteactive() {
   int T; scanf("%d", &T);
-  for(int t = 1; t <= T; ++t) {
+  for(int t=1; t<=T; ++t) {
     int A; scanf("%d", &A);
     Solve s(A);
     while(true) s.ask(0);
