@@ -49,24 +49,52 @@ template<typename S, typename T> std::ostream& operator<<(std::ostream& _os, con
  
  4/12/2019
  
- 20:01-20:25 small passed
+ 20:01-20:25 passed small test set
+ 
+ 4/15/2019
+ 
+ 10:45-11:45, 13:15-15:30 read editorials and passed large test set
+ 
+ https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104f1a
+ http://drken1215.hatenablog.com/entry/2019/04/14/161400
+ https://twitter.com/uwitenpen/status/1116908648381308928
+ 
+ Key:
+  - guess # from modulo <=> Chinese Remainder Theorem
+  - X satisfies ∀i=1..7, X≡B[i] (mod M[i])
  
  */
 
 // $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && python testing_tool.py ./a.out
 // $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG GolfGophers.cpp && python interactive_runner.py python testing_tool.py 0 -- ./a.out
 
+const int MAX_N=1e6+1;
+int M[7]={17,16,15,13,11,7,5};
 int main() {
-  int T,N,M; cin>>T>>N>>M;
+  int T,N,_M; cin>>T>>N>>_M;
   for(int t=1; t<=T; ++t) {
-    REP(i,18) {
-      cout<<18;
-      if(i==17) cout<<endl;
-      else cout<<" ";
+    VI B(MAX_N,0);
+    REP(i,7) {
+      int m=M[i];
+      REP(i,18) {
+        cout<<m;
+        if(i==17) cout<<endl;
+        else cout<<" ";
+      }
+      int sum=0;
+      REP(i,18) {
+        int a; cin>>a;
+        sum+=a;
+      }
+      sum%=m;
+      for(int i=sum; i<=MAX_N; i+=m) B[i]++;
     }
-    VI A(18,0);
-    REP(i,18) cin>>A[i];
-    int res=accumulate(ALL(A),0);
+    int res=-1;
+    REP(i,MAX_N) if(B[i]==7) {
+      res=i;
+      break;
+    }
+    assert(res!=-1);
     cout<<res<<endl;
     int verd; cin>>verd;
     if(verd==-1) exit(0);
