@@ -26,7 +26,7 @@ template<class Iter> void __kumaerrc(Iter begin, Iter end) { for(; begin!=end; +
 void __kumaerr(istream_iterator<string> it) { (void)it; cerr<<endl; }
 template<typename T, typename... Args> void __kumaerr(istream_iterator<string> it, T a, Args... args) { cerr<<*it<<"="<<a<<", ",__kumaerr(++it, args...); }
 template<typename S, typename T> std::ostream& operator<<(std::ostream& _os, const std::pair<S,T>& _p) { return _os<<"{"<<_p.first<<','<<_p.second<<"}"; }
-//#define __KUMATRACE__ true
+#define __KUMATRACE__ true
 #ifdef __KUMATRACE__
 #define dump(args...) { string _s = #args; replace(_s.begin(), _s.end(), ',', ' '); stringstream _ss(_s); istream_iterator<string> _it(_ss); __kumaerr(_it, args); }
 #define dumpc(ar) { cerr<<#ar<<": "; FORR(x,(ar)) { cerr << x << ','; } cerr << endl; }
@@ -39,109 +39,61 @@ template<typename S, typename T> std::ostream& operator<<(std::ostream& _os, con
 
 class TrieNode {
 public:
-  bool isroot=false;
-  int cnt=0;
-  bool hasWord = false;
-  vector<TrieNode *> children;
-  // Initialize your data structure here.
-  TrieNode() {
-    this->children = vector < TrieNode * > (26, NULL);
-  }
-  int dfs(string s) {
-    int x=0,icnt=cnt;
-    REP(i,26) if(children[i]!=nullptr) {
-      char c='A'+i;
-      string t=s; t.push_back(c);
-      dump(s,i,c,t);
-      int y=children[i]->dfs(t);
-      dump(y);
-      x+=y;
+  const char C_SIZE=26;
+  const char BASE='A';
+  int cnt=0; // # of strs in subtree
+  set<int> ids; // str ending here
+  vector<TrieNode*> cs;
+  TrieNode() { this->cs=vector<TrieNode*>(C_SIZE,nullptr); }
+  void release() { for(auto c : cs) if(c!=nullptr) c->release(), delete c; }
+  void insert(int id, string &s, int p=0) {
+    ++cnt;
+    if(p==s.size()) {
+      ids.emplace(id);
+      return;
     }
-    if(isroot) {
-//      dump(s,x);
-      return x;
-    }
-    icnt-=x;
-    int res=x+min(2,(icnt/2)*2);
-    dump(s,cnt,x,icnt,res);
-    return res;
+    int i=index(s[p]);
+    auto x=cs[i];
+    if(x==nullptr) x=new TrieNode(),cs[i]=x;
+    x->insert(id,s,p+1);
   }
-};
-
-class Trie {
-public:
-  Trie() {
-    root = new TrieNode();
+  TrieNode* find(string &s, int p=0) {
+    if(p==s.size()) return this;
+    int i=index(s[p]);
+    if(cs[i]==nullptr) return nullptr;
+    return cs[i]->find(s,p+1);
   }
-  
-  // Inserts a word into the trie.
-  void insert(string word) {
-    TrieNode *n = root;
-    n->isroot=true;
-    n->cnt++;
-    for(int i=0; i<word.size(); i++) {
-      int w = word[i]-'A';
-      TrieNode *next = n->children[w];
-      if (next==NULL) {
-        next = new TrieNode();
-        n->children[w] = next;
-      }
-      n = next;
-      n->cnt++;
-    }
-    n->hasWord = true;
+  int search(string s) {
+    TrieNode* n=find(s);
+    return (n!=nullptr&&n->ids.size())?*(n->ids.begin()):-1;
+  }
+  int prefix(string p) {
+    TrieNode* n=find(p);
+    return n!=nullptr?n->cnt:0;
   }
   
   int dfs() {
-    return root->dfs("");
-  }
-  
-  // Returns if the word is in the trie.
-  bool search(string word) {
-    TrieNode *n = find(word);
-    
-    return n!=NULL ? n->hasWord : false;
-  }
-  
-  // Returns if there is any word in the trie
-  // that starts with the given prefix.
-  bool startsWith(string prefix) {
-    TrieNode *n = find(prefix);
-    
-    return n!=NULL;
-  }
-  
-  TrieNode* find(string s) {
-    TrieNode *n = root;
-    for(int i=0; i<s.size(); i++) {
-      int w = s[i]-'a';
-      TrieNode *next = n->children[w];
-      if (next==NULL) {
-        return NULL;
-      }
-      n = next;
-    }
-    
-    return n;
-  }
-  
-  void release() {
-    releaseNode(root);
+    int x=0,icnt=cnt;
+    FORR(c,cs) if(c!=nullptr) x+=c->dfs();
+    icnt-=x;
+    int res=x+min(2,(icnt/2)*2);
+    //    dump(x,icnt,res);
+    return res;
   }
 private:
-  TrieNode* root;
-  void releaseNode(TrieNode* n) {
-    if (!n) return;
-    for(auto &c : n->children) releaseNode(c);
-    delete n;
-  }
+  int index(char c) { return c-BASE; }
 };
 
 /*
  
  4/12/2019
  
- 18:01-18:51 submit
+ 18:01-18:51 passed small & large test set
+ 
+ https://codingcompetitions.withgoogle.com/codejam/round/0000000000051635/0000000000104e05
+ http://kmjp.hatenablog.jp/entry/2019/04/15/1030
+ http://drken1215.hatenablog.com/entry/2019/04/14/165100
+ https://tatyam.hatenablog.com/entry/2019/04/13/131813
  
  */
 // $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG AlienRhyme.cpp && ./a.out < AlienRhyme.in | diff AlienRhyme.out -
@@ -149,21 +101,22 @@ const int MAX_N=1e3+1;
 string W[MAX_N];
 int N;
 void solve() {
-  Trie* T=new Trie();
+  TrieNode* trie=new TrieNode();
   REP(i,N) {
     string w=W[i];
     reverse(w.begin(),w.end());
-    T->insert(w);
+    trie->insert(i,w);
   }
-  int res=T->dfs();
-  T->release();
+  int res=0;
+  FORR(c,trie->cs) if(c!=nullptr) res+=c->dfs();
+  trie->release(), delete trie;
   cout<<res<<endl;
 }
 
 int main(int argc, char* argv[]) {
   int T; cin>>T;
   for(int t=1; t<=T; ++t) {
-    N; cin>>N;
+    cin>>N;
     REP(i,N) cin>>W[i];
     
     cout<<"Case #"<<t<<": ";
