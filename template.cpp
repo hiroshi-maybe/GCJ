@@ -37,7 +37,6 @@ template<typename S, typename T> std::ostream& operator<<(std::ostream& _os, con
 #define dumpC(beg,end)
 #endif
 
-// iostream
 // $ g++ -std=c++11 -Wall -O2 -D_GLIBCXX_DEBUG x.cpp && ./a.out < x.in | diff x.out -
 const int MAX_N=1e6+1;
 LL A[MAX_N];
