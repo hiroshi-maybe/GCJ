@@ -51,6 +51,8 @@ template<typename S, typename T> std::ostream& operator<<(std::ostream& _os, con
  
  14:24-14:43 AC
  
+ https://codingcompetitions.withgoogle.com/codejam/round/000000000019fd27/000000000020bdf9
+ 
  */
 
 const int MAX_N=1e3+1;

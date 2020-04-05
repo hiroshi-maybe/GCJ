@@ -52,6 +52,8 @@ template<typename S, typename T> std::ostream& operator<<(std::ostream& _os, con
  13:54-14:05 WA (IO mistake)
  14:07 AC
  
+ https://codingcompetitions.withgoogle.com/codejam/round/000000000019fd27/000000000020993c
+ 
  */
 
 const int MAX_N=1e2+1;

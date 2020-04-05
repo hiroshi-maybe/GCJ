@@ -51,6 +51,8 @@ template<typename S, typename T> std::ostream& operator<<(std::ostream& _os, con
  
  14:08-14:22 AC
  
+ https://codingcompetitions.withgoogle.com/codejam/round/000000000019fd27/0000000000209a9f
+ 
  */
 
 string S;
