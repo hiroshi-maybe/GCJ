@@ -3,3 +3,16 @@ name = "GoogleCodeJamSolutions"
 version = "0.1.0"
 authors = ["Hiroshi Kori <hiroshi.maybe@gmail.com>"]
 edition = "2018"
+
+[[bin]]
+name = "punched_cards"
+path = "punched_cards.rs"
+
+[[bin]]
+name = "3d_printing"
+path = "3d_printing.rs"
+
+[[bin]]
+name = "d1000000"
+path = "d1000000.rs"
+
