@@ -100,6 +100,6 @@ fn main() {
 
     for t in 0..readln!(usize) {
         let res = solve();
-        put!("Case #{}: {}", t + 1, res);
+        puts!("Case #{}: {}", t + 1, res);
     }
 }
