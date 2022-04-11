@@ -82,6 +82,9 @@ pub mod vec {
 // $ cp-batch xxxxx | diff xxxxx.out -
 // $ cargo run --bin xxxxx
 
+// interactive
+// $ cargo build --bin equal_sum && python interactive_runner.py python3 local_testing_tool.py 0 -- ./target/debug/equal_sum
+
 ///
 /// 4/1/2022
 ///
@@ -101,5 +104,29 @@ fn main() {
     for t in 0..readln!(usize) {
         let res = solve();
         puts!("Case #{}: {}", t + 1, res);
+    }
+}
+
+#[test]
+fn test() {
+    use rand::prelude::*;
+
+    let maxl = 10;
+    let max_a = 7;
+    loop {
+        let mut rng = thread_rng();
+        let n = rng.gen_range(1, maxl);
+        let a = (0..n)
+            .map(|_| rng.gen_range(0u8, crange))
+            .collect_vec();
+
+        let act = solve();
+
+        let exp = 0;
+
+        if act != exp {
+            dbgln!(act, exp);
+            dbgln!(s);
+        }
     }
 }
