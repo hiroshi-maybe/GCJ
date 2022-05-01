@@ -92,7 +92,7 @@ pub mod vec {
 ///
 
 fn solve() -> i64 {
-    let n = readln!(i64);
+    let n = readln!(usize);
     let a = readln!([i64]);
 
     unreachable!()
@@ -116,9 +116,7 @@ fn test() {
     loop {
         let mut rng = thread_rng();
         let n = rng.gen_range(1, maxl);
-        let a = (0..n)
-            .map(|_| rng.gen_range(0u8, crange))
-            .collect_vec();
+        let a = (0..n).map(|_| rng.gen_range(0u8, crange)).collect_vec();
 
         let act = solve();
 
