@@ -1,0 +1,17 @@
+[package]
+name = "GCJ-2022R1C"
+version = "0.1.0"
+authors = ["Hiroshi Kori <hiroshi.maybe@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+rand = { version = "=0.7.3", features = ["small_rng"] }
+
+[[bin]]
+name = "letter_blocks"
+path = "letter_blocks.rs"
+
+[[bin]]
+name = "squary"
+path = "squary.rs"
+
